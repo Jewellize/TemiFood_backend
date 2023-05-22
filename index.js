@@ -51,8 +51,15 @@ app.get('/alldata', function (req, res) {
   connection.query(
     'SELECT * FROM products',
     function(err, results, fields) {
-      console.log(results); // results contains rows returned by server
-      res.json(results);
+      if(err){
+        console.log(err)
+        res.send({message: err})
+      }
+      else{
+        console.log(results); // results contains rows returned by server
+        res.json(results);
+      }
+
     }
   );
   
