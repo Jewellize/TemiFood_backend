@@ -11,6 +11,11 @@ app.use(express.static("public"));
 
 
 const connection = mysql.createConnection({
+  // host: "localhost",
+  // user: "root",
+  // password: "1234",
+  // database: "food",
+  // port: "3307"
   host: "y44.h.filess.io",
   user: "temifood_automobile",
   password: "33580e813951c7b871a938cbb5433009eb78ce69",
