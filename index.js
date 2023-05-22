@@ -34,12 +34,12 @@ const upload = multer({
   storage: storage
 })
 
-connection.query(
-  'SELECT * FROM products',
-  function(err, results, fields) {
-    console.log(results); // results contains rows returned by server
-  }
-);
+// connection.query(
+//   'SELECT * FROM products',
+//   function(err, results, fields) {
+//     console.log(results); // results contains rows returned by server
+//   }
+// );
 
 
 
