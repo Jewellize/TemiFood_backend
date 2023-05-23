@@ -18,10 +18,6 @@
     {
       "src": "/images",
       "dest": "public/images"
-    },
-    {
-      "src": "/(.+)",
-      "dest": "public/$1"
     }
   ]
 }
