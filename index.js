@@ -70,6 +70,7 @@ app.get('/alldata', function (req, res) {
   
 })
 
+//post images
 app.post('/uploads',upload.single('image') ,(req, res) => {
   const image = req.file.filename;
   const name = req.body.name;
@@ -82,5 +83,10 @@ app.post('/uploads',upload.single('image') ,(req, res) => {
   })
   
 })
+
+//post cart to database
+
+
+
 
 app.listen(3000)
