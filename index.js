@@ -16,10 +16,10 @@ const connection = mysql.createConnection({
   // password: "1234",
   // database: "food",
   // port: "3307"
-  host: "y44.h.filess.io",
-  user: "temifood_automobile",
-  password: "33580e813951c7b871a938cbb5433009eb78ce69",
-  database: "temifood_automobile",
+  host: "fvw.h.filess.io",
+  user: "DataTemiFood_cellplusmy",
+  password: "317e18cbe915a32e93991d74272e5f897cfc4480",
+  database: "DataTemiFood_cellplusmy",
   port: "3307"
 });
 console.log(connection)
