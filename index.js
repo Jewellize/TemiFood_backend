@@ -9,7 +9,7 @@ const path = require('path')
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(process.cwd() + "/public"));
 
 
 const connection = mysql.createConnection({
