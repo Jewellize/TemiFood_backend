@@ -10,14 +10,12 @@
       {
         "src": "/(.*)",
         "dest": "index.js"
+      },
+      {
+        "src": "/images/(.*)",
+        "dest": "/public/images/$1"
       }
-    ],
-    "rewrites": [
-    {
-      "source": "/images/(.*)",
-      "destination": "/public/images/$1"
-    }
-  ]
+    ]
 }
 
 
