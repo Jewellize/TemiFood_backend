@@ -14,8 +14,8 @@
     ],
     "rewrites": [
     {
-      "source": "/images/(.*)",
-      "destination": "/public/images/$1"
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
     }
   ]
 }
