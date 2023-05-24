@@ -88,18 +88,19 @@ app.post('/uploads',upload.single('image') ,(req, res) => {
 
 //post cart to database
 app.post('/products', jsonParser, function (req, res, next) {
-  connection.execute(
-      'INSERT INTO `payment_bill` (food_qty, total) VALUES (?, ?)',
-      [req.body.food_qty, req.body.total],
-      function(err, results, fields) {
-        if (err) {
-          res.json({status: 'error', message: err})
-          return
-        }
-        res.json({status: 'ok'})
+  console.log(req.body);
+  // connection.execute(
+  //     'INSERT INTO `payment_bill` (food_qty, total) VALUES (?, ?)',
+  //     [req.body.food_qty, req.body.total],
+  //     function(err, results, fields) {
+  //       if (err) {
+  //         res.json({status: 'error', message: err})
+  //         return
+  //       }
+  //       res.json({status: 'ok'})
 
-      }
-    );
+  //     }
+  //   );
 
 })
 
