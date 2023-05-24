@@ -3,6 +3,8 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const multer = require('multer')
 const path = require('path')
+const bodyParser = require('body-parser')
+const jsonParser = bodyParser.json()
 
 const app = express();
 app.use(cors());
@@ -85,6 +87,23 @@ app.post('/uploads',upload.single('image') ,(req, res) => {
 })
 
 //post cart to database
+app.post('/products', jsonParser, function (req, res, next) {
+  connection.execute(
+      'INSERT INTO `payment_bill` (food_qty, total) VALUES (?, ?)',
+      [req.body.food_qty, req.body.total],
+      function(err, results, fields) {
+        if (err) {
+          res.json({status: 'error', message: err})
+          return
+        }
+        res.json({status: 'ok'})
+
+      }
+    );
+
+})
+
+
 
 
 
