@@ -13,18 +13,18 @@ app.use(express.static(process.cwd() + "/public"));
 
 
 const connection = mysql.createConnection({
-  // host: "localhost",
-  // user: "root",
-  // password: "1234",
-  // database: "food",
-  // port: "3307"
-  host: "fvw.h.filess.io",
-  user: "DataTemiFood_cellplusmy",
-  password: "317e18cbe915a32e93991d74272e5f897cfc4480",
-  database: "DataTemiFood_cellplusmy",
+  host: "localhost",
+  user: "root",
+  password: "1234",
+  database: "food",
   port: "3307"
+  // host: "fvw.h.filess.io",
+  // user: "DataTemiFood_cellplusmy",
+  // password: "317e18cbe915a32e93991d74272e5f897cfc4480",
+  // database: "DataTemiFood_cellplusmy",
+  // port: "3307"
 });
-console.log(connection)
+// console.log(connection)
 
 
 
@@ -89,18 +89,64 @@ app.post('/uploads',upload.single('image') ,(req, res) => {
 //post cart to database
 app.post('/products', jsonParser, function (req, res, next) {
   console.log(req.body);
-  // connection.execute(
-  //     'INSERT INTO `payment_bill` (food_qty, total) VALUES (?, ?)',
-  //     [req.body.food_qty, req.body.total],
-  //     function(err, results, fields) {
-  //       if (err) {
-  //         res.json({status: 'error', message: err})
-  //         return
-  //       }
-  //       res.json({status: 'ok'})
+  const bulkfood = req.body.data;
+  const ordertime = req.body.ordertime;
+  const numoftable = req.body.table;
+  connection.execute(
+      'INSERT INTO `payment_bill` (bulkfood, cookstatus, ordertime,numoftable) VALUES (?, ?, ?, ?)',
+      [JSON.stringify(bulkfood), 0, ordertime, numoftable],
+      function(err, results, fields) {
+        if (err) {
+          console.log(err);
+          res.json({status: 'error', message: err})
+          return
+        }
+        console.log('ok')
+        res.json({status: 'ok'})
 
-  //     }
-  //   );
+      }
+    );
+
+})
+
+app.get('/showorder', function (req, res) {
+  connection.query(
+    'SELECT * FROM payment_bill',
+    function(err, results, fields) {
+      if(err){
+        console.log(err)
+        res.send({message: err})
+      }
+      else{
+        console.log(results); // results contains rows returned by server
+        res.json(results);
+      }
+
+    }
+  );
+})
+
+//post cookstatus
+app.post('/updatecookstatus/:id', jsonParser, function (req, res, next) {
+  // console.log(req.body);
+  const orderId = req.params.id;
+  const updateValue = req.body.updateValue;
+  // console.log(bulkfood);
+  // console.log(req.body);
+
+  connection.execute(
+      `UPDATE payment_bill SET cookstatus = ${updateValue} WHERE id = ${orderId}`,
+      function(err, results, fields) {
+        if (err) {
+          console.log(err);
+          res.json({status: 'error', message: err})
+          return
+        }
+        console.log('ok')
+        res.json({status: 'ok'})
+
+      }
+    );
 
 })
 
