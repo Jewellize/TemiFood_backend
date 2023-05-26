@@ -13,16 +13,16 @@ app.use(express.static(process.cwd() + "/public"));
 
 
 const connection = mysql.createConnection({
-  // host: "localhost",
-  // user: "root",
-  // password: "1234",
-  // database: "food",
-  // port: "3307"
-  host: "fvw.h.filess.io",
-  user: "DataTemiFood_cellplusmy",
-  password: "317e18cbe915a32e93991d74272e5f897cfc4480",
-  database: "DataTemiFood_cellplusmy",
+  host: "localhost",
+  user: "root",
+  password: "1234",
+  database: "food",
   port: "3307"
+  // host: "fvw.h.filess.io",
+  // user: "DataTemiFood_cellplusmy",
+  // password: "317e18cbe915a32e93991d74272e5f897cfc4480",
+  // database: "DataTemiFood_cellplusmy",
+  // port: "3307"
 });
 // console.log(connection)
 
@@ -30,7 +30,7 @@ const connection = mysql.createConnection({
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'https://temi-food-backend.vercel.app/public/images')
+    cb(null, 'https://temi-food-backend.vercel.app/images')
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname)
