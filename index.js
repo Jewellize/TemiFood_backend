@@ -99,9 +99,33 @@ app.post('/products', jsonParser, function (req, res, next) {
   const ordertime = req.body.ordertime;
   const numoftable = req.body.table;
   const totalprice = req.body.total;
+  const tableId = req.body.tableId
   connection.execute(
-      'INSERT INTO `payment_bill` (bulkfood, cookstatus, ordertime, numoftable, totalprice) VALUES (?, ?, ?, ?, ?)',
-      [JSON.stringify(bulkfood), 0, ordertime, numoftable, totalprice],
+      'INSERT INTO `payment_bill` (bulkfood, cookstatus, ordertime, numoftable, totalprice, tables_idtables) VALUES (?, ?, ?, ?, ?, ?)',
+      [JSON.stringify(bulkfood), 0, ordertime, numoftable, totalprice, tableId],
+      function(err, results, fields) {
+        if (err) {
+          console.log(err);
+          res.json({status: 'error', message: err})
+          return
+        }
+        console.log('ok')
+        res.json({status: 'ok'})
+
+      }
+    );
+
+})
+
+//update cart
+app.post('/updatestatus/:id', jsonParser, function (req, res, next) {
+  // console.log(req.body);
+  const tableId = req.params.id;
+  // console.log(bulkfood);
+  // console.log(req.body);
+
+  connection.execute(
+      `UPDATE tables SET temistatus = 1 WHERE id = ${tableId}`,
       function(err, results, fields) {
         if (err) {
           console.log(err);
