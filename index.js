@@ -97,12 +97,12 @@ app.post('/products', jsonParser, function (req, res, next) {
   console.log(req.body);
   const bulkfood = req.body.data;
   const ordertime = req.body.ordertime;
-  const numoftable = req.body.table;
+  // const numoftable = req.body.table;
   const totalprice = req.body.total;
-  const tableId = req.body.tableId
+  const tableId = req.body.tableId;
   connection.execute(
-      'INSERT INTO `payment_bill` (bulkfood, cookstatus, ordertime, numoftable, totalprice, tables_idtables) VALUES (?, ?, ?, ?, ?, ?)',
-      [JSON.stringify(bulkfood), 0, ordertime, numoftable, totalprice, tableId],
+      'INSERT INTO `payment_bill` (bulkfood, cookstatus, ordertime, totalprice, tables_idtables) VALUES (?, ?, ?, ?, ?)',
+      [JSON.stringify(bulkfood), 0, ordertime, totalprice, tableId],
       function(err, results, fields) {
         if (err) {
           console.log(err);
