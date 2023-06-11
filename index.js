@@ -125,7 +125,7 @@ app.post('/updatestatus/:id', jsonParser, function (req, res, next) {
   // console.log(req.body);
 
   connection.execute(
-      `UPDATE tables SET temistatus = 1 WHERE id = ${tableId}`,
+      `UPDATE tables SET temistatus = 1 WHERE idtables = ${tableId}`,
       function(err, results, fields) {
         if (err) {
           console.log(err);
