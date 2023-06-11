@@ -157,6 +157,23 @@ app.post('/updatecookstatus/:id', jsonParser, function (req, res, next) {
 
 })
 
+//get tables
+app.get('/tables', function (req, res) {
+  connection.query(
+    'SELECT * FROM tables WHERE temistatus = 0 ORDER BY tabletimestamp ASC LIMIT 1',
+    function(err, results, fields) {
+      if(err){
+        console.log(err)
+        res.send({message: err})
+      }
+      else{
+        console.log(results); // results contains rows returned by server
+        res.json(results);
+      }
+
+    }
+  );
+})
 
 
 
