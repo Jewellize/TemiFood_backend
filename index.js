@@ -202,7 +202,7 @@ app.get('/tables', function (req, res) {
 //get tables for temi
 app.get('/status', function (req, res) {
   connection.query(
-    'SELECT * FROM tables ORDER BY tabletimestamp ASC LIMIT 1',
+    'SELECT * FROM tables ORDER BY tabletimestamp ASC',
     function(err, results, fields) {
       if(err){
         console.log(err)
