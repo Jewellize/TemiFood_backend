@@ -200,23 +200,22 @@ app.get('/tables', function (req, res) {
 })
 
 //get tables for temi
-// app.get('/status', function (req, res) {
-//   connection.query(
-//     'SELECT * FROM tables ORDER BY tabletimestamp ASC',
-//     function(err, results, fields) {
-//       if(err){
-//         console.log(err)
-//         res.send({message: err})
-//       }
-//       else{
-//         console.log(results); // results contains rows returned by server
-//         res.json(results);
-//         connection.end();
-//       }
+app.get('/allstatus', function (req, res) {
+  connection.query(
+    'SELECT * FROM tables ORDER BY tabletimestamp ASC',
+    function(err, results, fields) {
+      if(err){
+        console.log(err)
+        res.send({message: err})
+      }
+      else{
+        console.log(results); // results contains rows returned by server
+        res.json(results);
+      }
 
-//     }
-//   );
-// })
+    }
+  );
+})
 
 
 
