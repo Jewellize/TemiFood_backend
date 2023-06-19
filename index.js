@@ -211,6 +211,7 @@ app.get('/status', function (req, res) {
       else{
         console.log(results); // results contains rows returned by server
         res.json(results);
+        connection.end();
       }
 
     }
